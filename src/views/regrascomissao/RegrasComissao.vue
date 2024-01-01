@@ -464,28 +464,24 @@
           console.log('Editando Item ID: '+id) 
           
       var data = 
-      JSON.stringify ( { 
-                          "ID":           id,
-                          "COD_EMPRESA":  store.empresaSelecionada,
-                          "COD_FUNCAO":       store.funcaoSelecionada,
-                          "MES":          store.mesSelecionado,
+      JSON.stringify ( {  
                           "TIPO_COMISSAO":store.cadastroRegra.TIPO_COMISSAO,
                           "QTDE":         store.cadastroRegra.QTDE,
                           "PERC":         store.cadastroRegra.PERC / 100,
                           "VALOR":        store.cadastroRegra.VALOR,
+                          "PREMIO":       store.cadastroRegra.PREMIO,
+                          "PERMITE_AVULSO":store.cadastroRegra.PERMITE_AVULSO, 
+                          "CLASSE":     store.cadastroRegra.CLASSE,
+                          "APELIDO":     store.cadastroRegra.APELIDO,
+                          "LEGENDA":     store.cadastroRegra.LEGENDA,
                           "USA_FAIXA":    store.cadastroRegra.USA_FAIXA,
                           "VALOR_MIN":    store.cadastroRegra.VALOR_MIN,
                           "VALOR_MAX":    store.cadastroRegra.VALOR_MAX,
                           "QTDE_MIN":     store.cadastroRegra.QTDE_MIN,
                           "QTDE_MAX":     store.cadastroRegra.QTDE_MAX,
-                          "PREMIO":       store.cadastroRegra.PREMIO,
-                          "PERMITE_AVULSO":store.cadastroRegra.PERMITE_AVULSO, 
-                          "MES":          store.cadastroRegra.MES,
-                          "ACESS_MIN":    store.cadastroRegra.ACESS_MIN,
-                          "ACESS_MAX":    store.cadastroRegra.ACESS_MAX,
-                          "PERC_MIN":     store.cadastroRegra.PERC_MIN,
-                          "PERC_MAX":     store.cadastroRegra.PERC_MAX,
-                          "CLASSE":     store.cadastroRegra.CLASSE 
+                          "PERC_MIN":     store.cadastroRegra.PERC_MIN,   
+                          "PERC_MAX":     store.cadastroRegra.PERC_MAX,                      
+                          
                       } 
                )
   
