@@ -1,5 +1,5 @@
 <template> 
-
+{{ store.funcoes?.filter( f => f.COD_FUNCAO == store.funcaoSelecionada)[0]?.FUNCAO }}
     <div v-if="!storeLogin.dadosUsuario.filter(f=> f.GESTOR =='X').length > 0 "
      style="color: red; font-size: 25px; padding: 15px;"
      >
@@ -195,7 +195,7 @@
                             <th role="columnheader" scope="col" aria-colindex="11" class=""><div>...</div></th>                        
                         </tr>
                     </thead>
-                    <tbody v-for="(user, indexUser) in store.usuariosGrupo.filter(f => f.COD_EMPRESA == store.empresaSelecionada && f.COD_FUNCAO == store.funcaoSelecionada && f.MES == store.mesSelecionado)" :key="indexUser" role="rowgroup">
+                    <tbody v-for="(user, indexUser) in store.usuariosGrupo.filter(f => f.COD_EMPRESA == store.empresaSelecionada && f.COD_FUNCAO ==  store.funcaoSelecionada && f.MES == store.mesSelecionado)" :key="indexUser" role="rowgroup">
                         <tr>      
                             <td aria-colindex="1" role="cell" class="">{{ user.MES }}</td>                    
                             <td aria-colindex="2" role="cell" class="">{{ user.NOME }}</td>
@@ -331,8 +331,7 @@
                                         "NOME":     x.NOME,
                                         "NOME_COMPLETO":     x.NOME_COMPLETO,
                                         "FUNCAO":   x.FUNCAO,
-                                        "COD_FUNCAO": x.COD_FUNCAO,
-                                        "FUNCAO": x.FUNCAO,
+                                        "COD_FUNCAO": x.COD_FUNCAO, 
                                         "DPTO":     x.DPTO,
                                         "MES":     x.MES,
                                         "MARCA":     x.MARCA,
@@ -349,12 +348,22 @@
                     arr.push(dados)
                     } 
                 )
-                const parsed_array = arr.map(val=>{return JSON.stringify(val)})
-                store.empresasFuncao = parsed_array.filter((value, ind)=> parsed_array.indexOf(value) == ind).map((val)=>{return JSON.parse(val)})
+               // const parsed_array = arr.map(val=>{return JSON.stringify(val)})
+               // store.empresasFuncao = parsed_array.filter((value, ind)=> parsed_array.indexOf(value) == ind).map((val)=>{return JSON.parse(val)})
                 }
                
             }    
             getUsuarios()
+
+            async function getFuncoes () {
+                var mesAjustado = store.mesSelecionado.replace('/','-')
+                if (1==1)  {
+                 var funcoes = await axios.get(store.baseApiHTTPS+'/funcoes') 
+                store.funcoes = funcoes.data 
+                       }
+               
+            }    
+            getFuncoes() 
     
         function distinctMes() {
                 const data = store.regrasComissao
@@ -385,7 +394,7 @@
                 "COD_EMPRESA":  store.empresaSelecionada, 
                 "NOME_EMPRESA": store.empresasGrupo.filter(f => f.EMPRESA == store.empresaSelecionada)[0].NOME,
                 "COD_FUNCAO":   store.funcaoSelecionada,
-                "FUNCAO":       store.empresasFuncao.filter(f => f.EMPRESA == store.empresaSelecionada && f.COD_FUNCAO == store.funcaoSelecionada)[0].FUNCAO,
+                "FUNCAO":       store.funcoes?.filter( f => f.COD_FUNCAO == store.funcaoSelecionada)[0]?.FUNCAO,
                 "MES":          store.mesSelecionado,
                 "NOME":         store.cadastroUsuario.NOME,
                 "NOME_COMPLETO":store.cadastroUsuario.NOME_COMPLETO,
@@ -427,7 +436,7 @@
                 "COD_EMPRESA":  store.empresaSelecionada, 
                 "NOME_EMPRESA": store.empresasGrupo.filter(f => f.EMPRESA == store.empresaSelecionada)[0].NOME,
                 "COD_FUNCAO":   store.funcaoSelecionada,
-                "FUNCAO":       store.empresasFuncao.filter(f => f.EMPRESA == store.empresaSelecionada && f.COD_FUNCAO == store.funcaoSelecionada)[0].FUNCAO,
+                "FUNCAO":       store.funcoes?.filter( f => f.COD_FUNCAO == store.funcaoSelecionada)[0]?.FUNCAO,
                 "MES":          store.mesSelecionado,
                 "NOME":         store.cadastroUsuario.NOME,
                 "NOME_COMPLETO":store.cadastroUsuario.NOME_COMPLETO,

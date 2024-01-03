@@ -143,9 +143,9 @@ export const indexStore = defineStore("rotas", () =>{
             mesF = (mes == 1) ? '0'+mes : mes,
             anoF = data.getFullYear();
 
-        if (dia < 7){          
-          mesF = (mesF== 1) ? '0'+mesF-1  : mesF-1 
-        }            
+       // if (dia < 7){          
+       //   mesF = (mesF== 1) ? '0'+mesF-1  : mesF-1 
+        //}            
         return mesF +"/"+anoF;
         } 
  

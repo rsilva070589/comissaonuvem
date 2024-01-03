@@ -512,7 +512,7 @@ const bind_data = async  () => {
         }
     
         var arredonda = function(numero, casasDecimais) {
-        casasDecimais = typeof casasDecimais !== 'undefined' ?  casasDecimais : 0;
+        casasDecimais = typeof casasDecimais !== 'undefined' ?  casasDecimais : 2;
         return +(Math.floor(numero + ('e+' + casasDecimais)) + ('e-' + casasDecimais));
       };
 

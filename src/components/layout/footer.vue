@@ -1,7 +1,7 @@
 <template>
     <!-- BEGIN FOOTER -->
     <div class="footer-wrapper">
-       
+       Version: 1.1 - 3/01/2024
     </div>
     <!-- END FOOTER -->
 </template>
